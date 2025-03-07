@@ -12,8 +12,7 @@
     <img src="https://avatars.githubusercontent.com/EunJung516" width="150" style="max-width: 100%;">
   </a>
   <a href="https://github.com/Domwis-IR">
-    <img src="https://avatars.githubusercontent.com/Domwis-IR
-" width="150" style="max-width: 100%;">
+    <img src="https://avatars.githubusercontent.com/Domwis-IR" width="150" style="max-width: 100%;">
   </a>
   <a href="https://github.com/Laon0821">
     <img src="https://avatars.githubusercontent.com/Laon0821" width="150" style="max-width: 100%;">
