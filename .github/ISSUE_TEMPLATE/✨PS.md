@@ -1,6 +1,6 @@
 ---
 name: '✨ Problem Solving Issue'
-about: PS
+about: 알고리즘 스터디 문제 정보 및 풀이 체크
 title: '[PS]'
 labels: '✨PS'
 assignees: ''
