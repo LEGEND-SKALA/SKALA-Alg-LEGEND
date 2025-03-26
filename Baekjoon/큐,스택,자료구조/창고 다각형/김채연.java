@@ -1,48 +1,47 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+
+    static int maxIdx, N, MAX, mid, sum = 0;
+    static int[] arr = new int[1001];
+
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-
-        Deque<int[]> deque = new ArrayDeque<>();
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
-        for (int i = 1; i <= N; i++) {
-            int num = Integer.parseInt(st.nextToken());
-            deque.offerLast(new int[]{i, num}); // {풍선 번호, 숫자}
-        }
-
-        StringBuilder sb = new StringBuilder();
-
-        while (!deque.isEmpty()) {
-            int[] balloon = deque.pollFirst();
-            int index = balloon[0];
-            int move = balloon[1];
-
-            sb.append(index).append(" ");
-
-            if (deque.isEmpty()) {
-                break;
+        N = Integer.parseInt(br.readLine());
+        StringTokenizer st;
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            int idx = Integer.parseInt(st.nextToken());
+            int value = Integer.parseInt(st.nextToken());
+            arr[idx] = value;
+            if (MAX < value) {
+                MAX = value;
+                mid = idx;
             }
-
-            // 이동 횟수 조정
-            if (move > 0) {
-                for (int i = 0; i < move - 1; i++) {
-                    deque.offerLast(deque.pollFirst());
-                }
+            if (maxIdx < idx) {
+                maxIdx = idx;
+            }
+        }
+        int max = arr[0];
+        for (int i = 1; i < mid; i++) { //1 ~ mid 까지
+            if (max < arr[i]) {
+                sum += arr[i];
+                max = arr[i];
             } else {
-                for (int i = 0; i < -move; i++) {
-                    deque.offerFirst(deque.pollLast());
-                }
+                sum += max;
             }
         }
-
-        System.out.println(sb);
+        max = arr[maxIdx];
+        for (int i = maxIdx; i >= mid + 1; i--) { //끝에서부터 ~ mid+1 까지
+            if (max < arr[i]) {
+                sum += arr[i];
+                max = arr[i];
+            } else {
+                sum += max;
+            }
+        }
+        System.out.println(sum + arr[mid]);
     }
 }
