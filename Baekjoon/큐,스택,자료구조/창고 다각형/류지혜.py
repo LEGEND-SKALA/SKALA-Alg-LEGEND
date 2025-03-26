@@ -1,37 +1,27 @@
-def find_highest(bars):
-    height_sort = sorted(bars, key=lambda x: x[1])
-    return height_sort[-1]
+def scanline(bars):
+    min_x = bars[0][0]
+    max_x = bars[-1][0]
+    length = max_x - min_x + 1
 
-def check_right(bars, highest_tuple):
-    idx = bars.index(highest_tuple)
-    right_bars = list(reversed(bars[:idx+1]))
-    area = 0
-    # (8, 10) (5, 3) (4, 6) (2, 4) (0, 8)
-    for i in range(len(right_bars)-1):
-        if right_bars[i][1] > right_bars[i+1][1]:
-            width = right_bars[0][0] - right_bars[i+1][0]
-            height = right_bars[i+1][1]
-            area = width * height
-        else:
-            width = right_bars[i][0] - right_bars[i+1][0]
-            height = right_bars[i+1][1]
-            area += width * height
-    return area
+    heights = [0] * length
+    for L, H in bars:
+        idx = L - min_x
+        heights[idx] = max(heights[idx], H) 
+    
+    left_max = [0] * length
+    left_max[0] = heights[0]
+    for x in range(1, length):
+        left_max[x] = max(left_max[x-1], heights[x])
 
-def check_left(bars, highest_tuple):
-    idx = bars.index(highest_tuple)
-    left_bars = bars[idx:]
+    right_max = [0] * length
+    right_max[-1] = heights[-1]
+    for x in range(length - 2, -1, -1):
+        right_max[x] = max(right_max[x+1], heights[x])
+    
     area = 0
-    # (8, 10), (11, 4), (13, 6), (15, 8)
-    for i in range(len(left_bars)-1):
-        if left_bars[i][1] > left_bars[i+1][1]:
-            width = left_bars[i+1][0] - left_bars[0][0]
-            height = left_bars[i+1][1]
-            area = width * height
-        else:
-            width = left_bars[i+1][0] - left_bars[i][0]
-            height = left_bars[i+1][1]
-            area += width * height
+    for x in range(length):
+        area += min(left_max[x], right_max[x])
+    
     return area
 
         
@@ -44,12 +34,7 @@ def __main__():
     bars = [tuple(map(int, input().split()) )for _ in range(bar_num)]
 
     bars = sorted(bars, key=lambda x: x[0])
-    print(bars)
-    highest_tuple = find_highest(bars)
-    print(check_right(bars, highest_tuple))
-    print(check_left(bars, highest_tuple))
-
-
+    print(scanline(bars))
 
 if __name__ == "__main__":
     __main__()
