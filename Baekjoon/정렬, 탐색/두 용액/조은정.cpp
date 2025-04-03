@@ -7,7 +7,6 @@ int n, m[100002], u, an = 2e9, a, b;
 
 int main() {
     ios::sync_with_stdio(0), cin.tie(0);
-
     // 용액을 입력 받고 정렬
     cin >> n; for(int i = 0; i < n; ++i) cin >> m[i]; sort(m, m + n);
 
