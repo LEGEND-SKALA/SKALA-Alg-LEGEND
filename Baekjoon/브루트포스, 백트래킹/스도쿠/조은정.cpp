@@ -14,7 +14,7 @@ void sol(int u) {
             for(int j = 0; j < 9; ++j) cout << b[i][j] << ' ';
             cout << '\n';
         }
-        exit(0);  // 프로그램 종료
+        exit(0);    // 프로그램 종료
     }
     // 인덱스 u에 대한 좌표 저장
     int y = p[u].first, x = p[u].second;
