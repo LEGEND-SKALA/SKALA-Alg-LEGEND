@@ -20,15 +20,12 @@ result = []
 for i in permutations(margins, n):
     result.append(i)
 
-# print(f"result: {result}")
-
 margin = 0
 count = 0
 correct = 0
 for i in range(len(result)):
     margin, correct = 0, 0
     for j in range(len(result[i])):
-        # print(f"result: {result[i][j]}, margin: {margin}, correct: {correct}, count: {count}")
         if margin + result[i][j] < 0:
             correct = 0
             break
