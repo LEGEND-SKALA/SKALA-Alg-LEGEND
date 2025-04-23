@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 public class Main {
     static int N, T = 0;
     static int[] dp;
-    static StringBuilder sb = new StringBuilder();
+    static StringBuilder str = new StringBuilder();
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,8 +18,8 @@ public class Main {
                     dp[i] += dp[i - j];
                 }
             }
-            sb.append(dp[N]).append("\n");
+            str.append(dp[N]).append("\n");
         }
-        System.out.println(sb);
+        System.out.println(str);
     }
 }
